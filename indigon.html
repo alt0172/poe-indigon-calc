@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<title>PoE Indigon calculator</title>
+	
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- -- ><script src="js/jquery-3.3.1.min.js"></script><!-- -->
+
+
+<div class="wrapper">
+	<div>
+		<h3>Indigon bonuses</h3>
+		<div class="data-pair">
+			<input type="text" class="" placeholder="51" id="indigon_cost" size="5" />
+			<label class="" for="indigon_cost">"% increased Mana Cost of Skills..."</label>
+		</div>
+		
+		<div class="data-pair">
+			<input type="text" class="" placeholder="59" id="indigon_dmg" size="5" />
+			<label class="" for="indigon_dmg">"% increased Spell Damage..."</label>
+		</div>
+		
+		<h3 class="second-in-block">Action time</h3>
+		<input type="text" class="" placeholder="0.2" id="action_time" size="5" />
+	</div>
+		
+	<div>
+		<div class="button-wrapper" id="button_wrapper">
+			<div class="column">
+				<div class="" id="do_calc">Calculate</div>
+			</div>
+			
+			<div class="column">
+				<div class="data-pair">
+					<input type="text" placeholder="20" id="emulation_time" size="1" maxlength="3"/>
+					<label class="" for="emulation_time">Time in seconds (1 - 120)</label>
+				</div>
+			</div>
+		</div>
+		<div class="info-output">
+			<div class="column">
+				<p>4 modes are emulated:</p>
+				<ul>
+					<li>No leech</li>
+					<li>No regen</li>
+					<li>60% less mana recovery</li>
+					<li>Maxed leech</li>
+				</ul>
+				<!-- -- >
+				<h4>One leech instance</h4>
+				<p class="short-info" id="avg_high_dmg"><span class="spelldmg-bonus">X</span>% average dmg after <span class="the-time">Y</span> sec.</p>
+				<p class="short-info" id="peak_info">Max: <span class="spelldmg-bonus"></span>% Spell dmg at <span class="the-time"></span> sec.</p>
+				<p class="short-info" id="average_info">Average: <span class="spelldmg-bonus"></span>% Spell dmg, hit at <span class="the-time"></span> sec.</p>
+				<p class="short-info" id="median_info">Median: <span class="spelldmg-bonus"></span>% Spell dmg, hit at <span class="the-time"></span> sec.</p>
+				<!-- -->
+			</div>
+			<div class="column">
+				<h4>Maxed leech</h4>
+				<p class="short-info" id="avg_high_dmg_max"><span class="spelldmg-bonus">X</span>% average dmg after <span class="the-time">Y</span> sec.</p>
+				<p class="short-info" id="peak_info_max">Max: <span class="spelldmg-bonus"></span>% Spell dmg at <span class="the-time"></span> sec.</p>
+				<p class="short-info" id="average_info_max">Average: <span class="spelldmg-bonus"></span>% Spell dmg, hit at <span class="the-time"></span> sec.</p>
+				<p class="short-info" id="median_info_max">Median: <span class="spelldmg-bonus"></span>% Spell dmg, hit at <span class="the-time"></span> sec.</p>
+			</div>
+		</div>
+	</div>
+	
+	<div>
+		<h3>Mana cost</h3>
+		
+		<div class="data-pair">
+			<input type="text" class="" placeholder="38" id="mana_cost" size="5" maxlength="4"/>
+			<label class="" for="mana_cost">Mana cost (as shown in PoB)</label>
+		</div>
+		
+		<div class="data-pair">
+			<input type="text" class="" placeholder="-9" id="mana_incred" size="5" maxlength="3" />
+			<label class="" for="mana_incred">"% Increased/ reduced mana cost of skills" (such as Fevered Mind, or Reduced Mana support)</label>
+		</div>
+		
+		<div class="data-pair">
+			<input type="text" class="" placeholder="0" id="mana_flat" size="5" maxlength="3" />
+			<label class="" for="mana_flat">"Total mana cost of skills" (flat number, such as on Elreon's/Vaal jewelry or Doedre's Malevolence)</label>
+		</div>
+		
+		<div class="data-pair">
+			<input type="text" class="" placeholder="4072" id="mana_precast" size="5" maxlength="5" />
+			<label class="" for="mana_precast">Precast skill mana cost if using any (for example, discipline spell totem)</label>
+		</div>
+		
+	</div>
+	
+	<div>
+		<h3>Mana</h3>
+		
+		<div class="column">
+			<div class="data-pair">
+				<input type="text" class="" placeholder="6465" id="mana_max" size="5" maxlength="5" />
+				<label class="" for="mana_max">Maximum mana (as shown in PoB)</label>
+			</div>
+			
+			<div class="data-pair">
+				<input type="text" class="" placeholder="4583" id="mana_unreserved" size="5" maxlength="5" />
+				<label class="" for="mana_unreserved">Unreserved mana (as shown in PoB)</label>
+			</div>
+			
+			<div class="data-pair">
+				<input type="text" class="" placeholder="0" id="mana_restore" size="5" maxlength="3" />
+				<label class="" for="mana_restore">"chance to Recover 10% of Maximum Mana when you use a Skill" (for smoothness recovers smaller amount each skill usage. for example with 50% it recovers 5% each time)</label>
+			</div>
+		</div>
+		<div class="column">
+			<div class="data-pair">
+				<input type="text" class="" placeholder="1536" id="mana_regen" size="5" maxlength="8" />
+				<label class="" for="mana_regen">Mana regen (as shown in PoB)</label>
+			</div>
+			
+			<div class="data-pair">
+				<input type="text" class="" placeholder="1422" id="mana_regen_after_degen" size="5" maxlength="8" />
+				<label class="" for="mana_regen_after_degen">"Net Mana regen" from PoB (calculates RF/BR + MoM. If none used, it's = Mana regen)</label>
+			</div>
+			
+			<div class="data-pair">
+				<input type="text" class="" placeholder="50" id="mana_recov" size="5" maxlength="3" />
+				<label class="" for="mana_recov">"% Increased mana recovery rate" (clarity Watcher's Eye or Shaper belt)</label>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div>
+		<h3>Mana leech (always on)</h3>
+		
+		
+		<div class="data-pair">
+			<input type="text" class="" placeholder="40" id="leech_per_sec" size="5" maxlength="3" />
+			<label class="" for="leech_per_sec">% Increased Mana Leeched per second</label>
+		</div>
+		
+		<div class="data-pair">
+			<input type="text" class="" placeholder="5" id="leech_max_rate" size="5" maxlength="3" />
+			<label class="" for="leech_max_rate">%of maximum Mana per second to maximum Mana Leech rate</label>
+		</div>
+		<!-- -- >
+		<div class="data-pair">
+			<input type="checkbox" class="" id="disable_leech" />
+			<label class="" for="disable_leech">Disable mana leech</label>
+		</div><!-- -->
+	</div>
+	
+	<div>
+		<h3>Mana flask (always on)</h3>
+		
+		<div class="data-pair">
+			<input type="text" class="" placeholder="0" id="flask_amount" size="5" maxlength="4" />
+			<label class="" for="flask_amount">"Recovers X Mana..."</label>
+		</div>
+		
+		<div class="data-pair">
+			<input type="text" class="" placeholder="0" id="flask_dur" size="5" maxlength="2" />
+			<label class="" for="flask_dur">"... over Y Seconds"</label>
+		</div>
+	</div>
+	
+	<div>
+		<h3>Mana flask mods</h3>
+		
+		<div class="data-pair">
+			<input type="text" class="" placeholder="35" id="flask_increc" size="5" maxlength="3" />
+			<label class="" for="flask_increc">"Increased mana recovery from flasks" (belt/passives)</label>
+		</div>
+		
+		<div class="data-pair">
+			<input type="text" class="" placeholder="26" id="flask_inceff" size="5" maxlength="3" />
+			<label class="" for="flask_inceff">"Increased effect of Flasks" (PF/passives)</label>
+		</div>
+	</div>
+	
+	
+</div>	
+
+<hr id="detailed_output_start">
+
+<div id="container"></div> <!-- Charts placeholder -->
+
+<hr>
+
+<div>
+	<h3>Detailed skill usage</h3>
+	<table class="detailed-table-output" id="table_start">
+		<thead id="table_heading">
+				<tr>
+					<th rowspan="3">Time spent</th>
+					<th colspan="7">No leech (hexproof / cannot leech)</th>
+					<th colspan="7">Noregen (cannot regenerate mana)</th>
+					<th colspan="7">60% less mana recovery</th>
+					<th colspan="7">Maxed leech</th>
+				</tr>
+				<tr>
+					<th rowspan="2">Mana left</th>
+					<th rowspan="2">Mana cost</th>
+					<th colspan="3">Mana gained from</th>
+					<th rowspan="2">#</th>
+					<th rowspan="2">% Spell Damage</th>
+					
+					<th rowspan="2">Mana left</th>
+					<th rowspan="2">Mana cost</th>
+					<th colspan="3">Mana gained from</th>
+					<th rowspan="2">#</th>
+					<th rowspan="2">% Spell Damage</th>
+					
+					<th rowspan="2">Mana left</th>
+					<th rowspan="2">Mana cost</th>
+					<th colspan="3">Mana gained from</th>
+					<th rowspan="2">#</th>
+					<th rowspan="2">% Spell Damage</th>
+					
+					<th rowspan="2">Mana left</th>
+					<th rowspan="2">Mana cost</th>
+					<th colspan="3">Mana gained from</th>
+					<th rowspan="2">#</th>
+					<th rowspan="2">% Spell Damage</th>
+				</tr>
+				<tr>
+					<th>Flask</th><th>Regen</th><th>Leech</th>
+					<th>Flask</th><th>Regen</th><th>Leech</th>
+					<th>Flask</th><th>Regen</th><th>Leech</th>
+					<th>Flask</th><th>Regen</th><th>Leech</th>
+				</tr>
+			</thead>
+		<tbody id="detailed_output_all_table">
+		</tbody>
+	</table>
+
+</div>
+
+<script src="js/script.js"></script>
+<script src="js/highcharts.js"></script>
+<script>
+var btnObj      = document.getElementById('do_calc');
+var btnWrapObj  = document.getElementById('button_wrapper');
+var hrObj       = document.getElementById('detailed_output_start');
+var tblObj      = document.getElementById('table_start');
+var tblObjHead  = document.getElementById('table_heading');
+
+//var tblObjHead  = document.getElementById('detailed_output_one_heading');
+//var tblObjHead2 = document.getElementById('detailed_output_max_heading');
+
+btnObj.addEventListener('click', main);
+window.addEventListener('scroll', function(e) {
+	// fix "Calculate" button when scrolled
+	if ( ( btnWrapObj.getBoundingClientRect().top < 0 ) && 
+	     ( hrObj.getBoundingClientRect().top > 45 ) ) {
+		btnObj.className = 'fixed-position';
+	} else {
+		btnObj.className = '';
+	}
+	/*
+	if ( tblObj.getBoundingClientRect().top <0 ) {
+		tblObjHead.className  = 'fixed-position';
+	} else {
+		tblObjHead.className  = '';
+	}//*/
+	
+	/*
+	//fix first table column
+	if ( tblObj.getBoundingClientRect().left <0 ) {
+		for ( let i=0; i<tblRows; i++){
+			tblObj.row[i].cell[0].className = 'fixed-position-left';
+		}
+	} else {
+		for ( let i=0; i<tblRows; i++){
+			tblObj.row[i].cell[0].className = '';
+		}
+	}
+	//*/
+});
+//*/
+</script>
+
+</body>
+</html>
