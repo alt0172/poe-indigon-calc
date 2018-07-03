@@ -309,6 +309,7 @@ function oneAction(){
 
 	manaLeft += manaFromFlask + manaFromRegen + manaFromLeech;
 	manaLeft = Math.min(manaLeft, manaUnreserved);
+	manaLeft = Math.max(manaLeft, 0);
 	
 	//save some data in "bonusesStatistic_all" object
 	var obj = bonusesStatistic_all[ bonusesStatistic_all.length-1 ];
