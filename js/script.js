@@ -170,7 +170,7 @@ function calcManaFromOneLeechPerSec(){
 	res  = manaMax*0.02;					// default leech from 1 instance
 	res *= (1 + manaLeechedPerSec/100);		// apply "mana leeched per second" bonus
 	res  = Math.min(res, manaLeechCap);		// cap leech at max rate (should not happen with 1 instance, but whatever)
-	res *= (1 + manaRecoveryRate/100);		// apply mana recovery rate multiplier
+	//res *= (1 + manaRecoveryRate/100);		// apply mana recovery rate multiplier
 	return round(res);
 }
 
