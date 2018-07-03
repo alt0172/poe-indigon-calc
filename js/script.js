@@ -180,8 +180,10 @@ function calcManaFromLeechPerSec(){
 	}
 	
 	var res;
-	if ( hitsDone > 10 ) {
-		res = manaLeechCap;								// leech is always capped after 10 hits
+	if ( hitsDone > (10+manaLeechRate/2) ) {
+		// leech is always capped after 10 hits (without "maximum Mana Leech rate" bonuses)
+		// if cap is increased: each hit leeches 2%, so extra hits amount is cap increase / 2
+		res = manaLeechCap;
 	} else {
 		res = hitsDone * calcManaFromOneLeechPerSec();	// otherwise some math has to be done
 		res = Math.min( res, manaLeechCap );			// cap leech if needed
