@@ -99,7 +99,7 @@ textarea {
 
 html {
 	font-family: sans-serif;
-	padding: 0 30px 40px;
+	/*padding: 0 30px 40px;/**/
 }
 body {
 	overflow-y:scroll;
@@ -108,33 +108,89 @@ body {
 .wrapper {
     font-size: 0;
 }
+/*
 .wrapper>div {
     font-size: 18px;
 	background:white;
 	display: inline-block;
 	vertical-align: top;
+}/**/
+
+.one-block, .two-blocks {
+	display: inline-block;
+	vertical-align: top;
+    font-size: 18px;
+	background:white;
+}
+
+.one-block {
 	width: 30%;
 	margin: 20px 1.66% 20px;
 }
-.wrapper>div:nth-child(2),
-.wrapper>div:nth-child(4) {
+.two-blocks {
 	width: 63.33%;
+	margin: 20px 1.66% 20px;
 }
+.column {
+	float: left;
+	width: 47.37%;
+}
+div>.column:nth-child(3){
+	margin-left:5.26%;
+}
+
+@media (max-width: 800px) {
+	.one-block {
+		width: 46%;
+		margin: 20px 2% 20px;
+	}
+	.two-blocks	{
+		width: 96%;
+		margin: 20px 2% 20px;
+	}/*
+	.column {
+		float: none;
+		width: 100%;
+	}
+	div>.column:nth-child(3){
+		margin-left:5.26%;
+	}/**/
+}
+@media (max-width: 600px) {
+	.one-block,
+	.two-blocks	{
+		display: block;
+		width: 95%;
+		margin: 20px 2.5% 20px;
+	}
+	.column {
+		float: none;
+		width: 100%;
+	}
+	div>.column:nth-child(3){
+		margin-left: 0%;/**/
+	}/**/
+}
+
+
+
 h3 {
 	margin: 0 0 12px;
 }
-.second-in-block {
-	margin-top: 22px;
-}
-.button-wrapper {
+
+#button_wrapper {
+	display:block;
 	line-height: 45px;
+	height:45px;/**/
 	position:relative;
 }
 #do_calc {
 	background-color: #6a5ad4;
 	color: #fff;/*#fcf29a;/**/
 	text-align: center;
-	width:100%;
+	width: 30%;
+	margin-left: 34.98%;
+	
 	height: 45px;
 	cursor: pointer;
 	font-size: 20px;
@@ -151,20 +207,10 @@ h3 {
 	top: 0px;
 }
 #do_calc.fixed-position {
-	width: calc(30% - 18px);
-}
-.button-wrapper>.column:nth-child(2) {
-	float:right;
+	
+	/*width: calc(30% - 18px);/**/
 }
 
-.button-wrapper .data-pair {
-	display: inline-block;
-	vertical-align: middle;
-}
-
-.info-output {
-	clear:both;
-}
 .short-info {
 	margin: 5px 0;
 }
@@ -183,16 +229,6 @@ h3 {
 
 .column h4{
 	margin: 10px 0;
-}
-.column {
-	float: left;
-	width: 47.37%;
-}
-
-div>.column:nth-child(3),
-div.button-wrapper>.column:nth-child(2),
-div.info-output>.column:nth-child(2) {
-	margin-left:5.26%;
 }
 /**/
 
