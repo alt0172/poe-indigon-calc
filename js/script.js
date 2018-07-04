@@ -497,43 +497,34 @@ function exportFormData(){
 	location.hash = '#' + res;
 }
 function importFormData(){
+	
+	var totalVariablesCount = 21;
+	
 	var str = location.hash.substring(1);
 	if ( str == '' ) {
 		return;
 	}
 	var arr = str.split(';');
-	if ( arr.length != 21 ){
+	if ( arr.length != totalVariablesCount ){
 		return;
 	}
-	
-	document.getElementById('emulation_time').value = arr[0];
-	document.getElementById('action_time').value    = arr[1];
-	document.getElementById('noleech_time').value   = arr[2];
-	
-	document.getElementById('indigon_cost').value   = arr[3];
-	document.getElementById('indigon_dmg').value    = arr[4];
-	
-	document.getElementById('mana_cost').value      = arr[5];
-	document.getElementById('mana_incred').value    = arr[6];
-	document.getElementById('mana_flat').value      = arr[7];
-	
-	document.getElementById('mana_max').value       = arr[8];
-	document.getElementById('mana_unreserved').value = arr[9];
-	
-	document.getElementById('mana_regen').value     = arr[10];
-	document.getElementById('mana_regen_after_degen').value = arr[11];
-	document.getElementById('mana_recov').value     = arr[12];
-	
-	document.getElementById('mana_restore').value   = arr[13];
-	document.getElementById('mana_precast').value   = arr[14];
-	
-	document.getElementById('flask_amount').value   = arr[15];
-	document.getElementById('flask_dur').value      = arr[16];
-	document.getElementById('flask_increc').value   = arr[17];
-	
-	document.getElementById('flask_inceff').value   = arr[18];
-	document.getElementById('leech_per_sec').value  = arr[19];
-	document.getElementById('leech_max_rate').value = arr[20];
+	var fieldsId = ['emulation_time','action_time','noleech_time',
+					'indigon_cost','indigon_dmg',
+					'mana_cost','mana_incred','mana_flat',
+					'mana_max','mana_unreserved',
+					'mana_regen','mana_regen_after_degen','mana_recov',
+					'mana_restore','mana_precast',
+					'flask_amount','flask_dur','flask_increc','flask_inceff',
+					'leech_per_sec','leech_max_rate' ];
+	//
+	var tmp;
+	for ( let i=0; i<totalVariablesCount; i++) {
+		tmp = Number(arr[i]);
+		if ( !isNaN(tmp) ) {
+			document.getElementById( fieldsId[i] ).value = tmp;
+		}
+	}
+	//*/
 }
 
 function emulate(mode){
