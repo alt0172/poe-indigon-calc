@@ -39,6 +39,7 @@
 	</div>
 	
 	<div class="one-block">
+		<div id="reset_form">Reset form</div>
 		<h3>Indigon bonuses</h3>
 		<div class="data-pair">
 			<input type="text" placeholder="51" id="indigon_cost" size="5" />
@@ -243,6 +244,7 @@ var btnWrapObj  = document.getElementById('button_wrapper');
 var hrObj       = document.getElementById('detailed_output_start');
 
 window.onload = importFormData();
+document.getElementById('reset_form').addEventListener('click', resetFormData);
 btnObj.addEventListener('click', main);
 
 window.addEventListener('scroll', function(e) {
