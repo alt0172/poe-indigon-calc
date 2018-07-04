@@ -529,6 +529,7 @@ function importFormData(){
 function resetFormData(){
 	location.hash='';
 	document.getElementById( 'form_' ).reset();
+	clearOutput();
 }
 
 function emulate(mode){
