@@ -51,16 +51,23 @@
 	</div>
 	
 	<div class="one-block">
-		<h3>Emulation time</h3>
+		<h3>Time settings</h3>
+		
 		<div class="data-pair">
-			<input type="text" placeholder="20" id="emulation_time" size="1" maxlength="3"/>
-			<label for="emulation_time">in seconds (1-120)</label>
+			<input type="text" placeholder="20" id="emulation_time" size="5" maxlength="3"/>
+			<label for="emulation_time">Emulation time in seconds (1-120)</label>
 		</div>
 		
-		<h3>Action time</h3>
+		<!--<h3>Action time</h3>-->
 		<div class="data-pair">
 			<input type="text" placeholder="0.2" id="action_time" size="5" />
-			<label for="action_time">in seconds (0.1-4)</label>
+			<label for="action_time">Action time in seconds (0.1-4) – time to spend one chunk of mana</label>
+		</div>
+		
+		<!--<h3>No leech time</h3>-->
+		<div class="data-pair">
+			<input type="text" placeholder="5" id="noleech_time" size="5" />
+			<label for="noleech_time">No leech time – when you spend mana but don't leech it back for a while (for example, "precasting" VD during shaper fight)</label>
 		</div>
 	</div>
 	
@@ -186,8 +193,8 @@
 					<th rowspan="3">Time spent</th>
 					<th colspan="7">No leech (hexproof / cannot leech)</th>
 					<th colspan="7">Noregen (cannot regenerate mana)</th>
-					<th colspan="7">60% less mana recovery</th>
-					<th colspan="7">Maxed leech</th>
+					<th colspan="7">Maxed leech after "no leech" timer ends</th>
+					<th colspan="7">Maxed leech, no restrictions</th>
 				</tr>
 				<tr>
 					<th rowspan="2">Mana left</th>

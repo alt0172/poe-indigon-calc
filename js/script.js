@@ -4,11 +4,11 @@ var tblRows = 0;
 // 1. Variables from form
 
 var emulatingTime;
+var actionTime;
+var noleechTime;
 
 var indigonCost;
 var indigonDmg;
-
-var actionTime;
 
 var manacost;
 var manacostInc;		// global (non-indigon) mana cost increases (fevered mind, apep's rage)
@@ -117,11 +117,12 @@ function resetOtherVars(){
 
 function setVars(){
 	emulatingTime = getFromForm('emulation_time',1 ,120);
+	actionTime    = getFromForm('action_time', 0.01, 4);
+	noleechTime   = getFromForm('noleech_time', 0, emulatingTime);
 	
 	indigonCost   = getFromForm('indigon_cost', 50, 60);
 	indigonDmg    = getFromForm('indigon_dmg', 50, 60);
 
-	actionTime    = getFromForm('action_time', 0.01, 4);
 
 	manacost      = getFromForm('mana_cost');
 	manacostInc   = getFromForm('mana_incred');
@@ -145,7 +146,6 @@ function setVars(){
 	manaLeechRate       = getFromForm('leech_max_rate');
 	
 	//manaLeechDisabled   = document.getElementById('disable_leech').checked;
-	
 
 	bonusesStatistic_all = [];
 	
@@ -170,7 +170,6 @@ function calcManaFromOneLeechPerSec(){
 	res  = manaMax*0.02;					// default leech from 1 instance
 	res *= (1 + manaLeechedPerSec/100);		// apply "mana leeched per second" bonus
 	res  = Math.min(res, manaLeechCap);		// cap leech at max rate (should not happen with 1 instance, but whatever)
-	//res *= (1 + manaRecoveryRate/100);		// apply mana recovery rate multiplier
 	return round(res);
 }
 
@@ -180,7 +179,7 @@ function calcManaFromLeechPerSec(){
 	}
 	
 	var res;
-	if ( hitsDone > (10+manaLeechRate/2) ) {
+	if ( hitsDone > (10 + manaLeechRate/2) ) {
 		// leech is always capped after 10 hits (without "maximum Mana Leech rate" bonuses)
 		// if cap is increased: each hit leeches 2%, so extra hits amount is cap increase / 2
 		res = manaLeechCap;
@@ -274,17 +273,12 @@ function updateBonuses (){
 		}
 	});
 	
-	//bonusesStatistic.push([ timespent, bonusesActive ] );
-	
-	
 	bonuses = bonuses.filter(function(elem){ return elem!==0;});	// clear array from 0 elements
 	
 	if( bonusesActive > maxBonusesReached) {
 		maxBonusesReached     = bonusesActive;
 		maxBonusesReachedTime = timespent;
 	}
-	
-	//maxBonusesReached = Math.max(maxBonusesReached, bonusesActive);
 }
 
 function addBonusesIfNeeded(manaSpent){
@@ -326,7 +320,13 @@ function oneAction(){
 	if ( manaLeft > manacost ) {
 		
 		//5 - do action, calc spent mana
-		hitsDone++;
+		if ( currentMode === 'noleech_time' ) {		// start leeching mana
+			if ( timespent > noleechTime ){
+				hitsDone++;
+			}
+		} else {
+			hitsDone++;
+		}
 		manaLeft = Math.floor( manaLeft - manacost + (manaMax*0.1*(manaRestoreChance/100)) );
 		manaLeft = Math.min( manaLeft, manaUnreserved );
 		
@@ -499,8 +499,9 @@ function main(){
 	emulate('no_regen');
 	
 	resetOtherVars();
-	mapRecoveryModifier = 0.4;
-	emulate('map_less_recov');
+	//mapRecoveryModifier = 0.4;
+	//emulate('map_less_recov');
+	emulate('noleech_time');
 	
 	resetOtherVars();
 	emulate('max_leech');
@@ -552,7 +553,7 @@ function buildChart(){
 			name: 'No regen',
 			data: bonusesStatistic_all[1].spellDmg
 		}, {
-			name: '60% less recov',
+			name: 'No leech at start',
 			data: bonusesStatistic_all[2].spellDmg
 		}, {
 			name: 'Maxed leech',
