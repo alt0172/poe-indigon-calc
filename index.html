@@ -24,6 +24,7 @@
 <!-- -- ><script src="js/jquery-3.3.1.min.js"></script><!-- -->
 
 <div class="wrapper">
+	<form id="form_">
 	<div class="button-wrapper" id="button_wrapper">
 		<div id="do_calc">Calculate</div>
 	</div>
@@ -176,7 +177,7 @@
 		</div>
 	</div>
 	
-	
+	</form>
 </div>	
 
 <hr id="detailed_output_start">
@@ -241,6 +242,7 @@ var btnObj      = document.getElementById('do_calc');
 var btnWrapObj  = document.getElementById('button_wrapper');
 var hrObj       = document.getElementById('detailed_output_start');
 
+window.onload = importFormData;
 btnObj.addEventListener('click', main);
 
 window.addEventListener('scroll', function(e) {

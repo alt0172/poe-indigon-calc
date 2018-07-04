@@ -1,5 +1,6 @@
 var globalPrecision = 3; // used to round everything
 var tblRows = 0;
+var exportStr = '';
 
 // 1. Variables from form
 
@@ -73,6 +74,10 @@ function getFromForm(id){	// id, [min, max]
 	
 	if ( res !== "" ) {
 		res = Number(res);
+		if ( isNaN(res) ) {
+			res = Number(tmp.placeholder);
+			tmp.value = res;
+		}
 	} else {
 		res = Number(tmp.placeholder);
 	}
@@ -462,10 +467,74 @@ function calcArrayMedian ( sourceArray ){
 }
 function firstTimeArrayValueExceededTarget( arr, target ){
 	for ( let i=0, l=arr.length; i<l; i++ ){
-		if ( arr[i]>target ) { return i; }
+		if ( arr[i]>=target ) { return i; }
 	}
 }
 
+function exportFormData(){
+	var res = emulatingTime + ';' +
+	          actionTime + ';' +
+			  noleechTime + ';' +
+			  indigonCost + ';' +
+			  indigonDmg + ';' +
+			  manacost + ';' +
+			  manacostInc + ';' +
+			  manacostFlat + ';' +
+			  manaMax + ';' +
+			  manaUnreserved + ';' +
+			  manaRegen + ';' +
+			  manaRegenAfterDegen + ';' +
+			  manaRecoveryRate + ';' +
+			  manaRestoreChance + ';' +
+			  manaPrecast + ';' +
+			  flaskAmount + ';' +
+			  flaskDuration + ';' +
+			  manaFlaskRecovery + ';' +
+			  flaskEffect + ';' +
+			  manaLeechedPerSec + ';' +
+			  manaLeechRate; 
+	//
+	location.hash = '#' + res;
+}
+function importFormData(){
+	var str = location.hash.substring(1);
+	if ( str == '' ) {
+		return;
+	}
+	var arr = str.split(';');
+	if ( arr.length != 21 ){
+		return;
+	}
+	
+	document.getElementById('emulation_time').value = arr[0];
+	document.getElementById('action_time').value    = arr[1];
+	document.getElementById('noleech_time').value   = arr[2];
+	
+	document.getElementById('indigon_cost').value   = arr[3];
+	document.getElementById('indigon_dmg').value    = arr[4];
+	
+	document.getElementById('mana_cost').value      = arr[5];
+	document.getElementById('mana_incred').value    = arr[6];
+	document.getElementById('mana_flat').value      = arr[7];
+	
+	document.getElementById('mana_max').value       = arr[8];
+	document.getElementById('mana_unreserved').value = arr[9];
+	
+	document.getElementById('mana_regen').value     = arr[10];
+	document.getElementById('mana_regen_after_degen').value = arr[11];
+	document.getElementById('mana_recov').value     = arr[12];
+	
+	document.getElementById('mana_restore').value   = arr[13];
+	document.getElementById('mana_precast').value   = arr[14];
+	
+	document.getElementById('flask_amount').value   = arr[15];
+	document.getElementById('flask_dur').value      = arr[16];
+	document.getElementById('flask_increc').value   = arr[17];
+	
+	document.getElementById('flask_inceff').value   = arr[18];
+	document.getElementById('leech_per_sec').value  = arr[19];
+	document.getElementById('leech_max_rate').value = arr[20];
+}
 
 function emulate(mode){
 	currentMode = mode;
@@ -490,8 +559,13 @@ function emulate(mode){
 
 
 function main(){
+	//importFormData();
+	
 	clearOutput();
 	setVars();
+	
+	exportFormData();
+	
 	
 	emulate('no_leech');
 	
@@ -499,8 +573,6 @@ function main(){
 	emulate('no_regen');
 	
 	resetOtherVars();
-	//mapRecoveryModifier = 0.4;
-	//emulate('map_less_recov');
 	emulate('noleech_time');
 	
 	resetOtherVars();
