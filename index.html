@@ -236,6 +236,8 @@
 
 </div>
 
+<footer><p>Made for 3.3 version (summer 2018). <a href="https://redd.it/8vtio5">Reddit thread</href> for feedback.</p></footer>
+
 <script src="js/script.js"></script>
 <script src="js/highcharts.js"></script>
 <script>
@@ -243,7 +245,8 @@ var btnObj      = document.getElementById('do_calc');
 var btnWrapObj  = document.getElementById('button_wrapper');
 var hrObj       = document.getElementById('detailed_output_start');
 
-window.onload = importFormData();
+window.onload = onLoadFunc();
+
 document.getElementById('reset_form').addEventListener('click', resetFormData);
 btnObj.addEventListener('click', main);
 

@@ -99,22 +99,13 @@ textarea {
 
 html {
 	font-family: sans-serif;
-	/*padding: 0 30px 40px;/**/
 }
 body {
 	overflow-y:scroll;
-	/*background:grey;/**/
 }
 .wrapper {
     font-size: 0;
 }
-/*
-.wrapper>div {
-    font-size: 18px;
-	background:white;
-	display: inline-block;
-	vertical-align: top;
-}/**/
 
 .one-block, .two-blocks {
 	display: inline-block;
@@ -147,14 +138,7 @@ div>.column:nth-child(3){
 	.two-blocks	{
 		width: 96%;
 		margin: 20px 2% 20px;
-	}/*
-	.column {
-		float: none;
-		width: 100%;
 	}
-	div>.column:nth-child(3){
-		margin-left:5.26%;
-	}/**/
 }
 @media (max-width: 600px) {
 	.one-block,
@@ -168,8 +152,8 @@ div>.column:nth-child(3){
 		width: 100%;
 	}
 	div>.column:nth-child(3){
-		margin-left: 0%;/**/
-	}/**/
+		margin-left: 0%;
+	}
 }
 
 #reset_form {
@@ -190,7 +174,7 @@ h3 {
 #button_wrapper {
 	display:block;
 	line-height: 45px;
-	height:45px;/**/
+	height:45px;
 	position:relative;
 }
 #do_calc {
@@ -203,8 +187,6 @@ h3 {
 	height: 45px;
 	cursor: pointer;
 	font-size: 20px;
-	/*margin-top: 21px;/**/
-	/*padding: 10px 0;/**/
 	
 	transition: background-color .15s ease-in-out;
 }
@@ -215,10 +197,7 @@ h3 {
 	position: fixed;
 	top: 0px;
 }
-#do_calc.fixed-position {
-	
-	/*width: calc(30% - 18px);/**/
-}
+#do_calc.fixed-position {}
 
 .short-info {
 	margin: 5px 0;
@@ -239,7 +218,6 @@ h3 {
 .column h4{
 	margin: 10px 0;
 }
-/**/
 
 .data-pair {
 	display: flex;
@@ -275,29 +253,15 @@ input {
 }
 .detailed-table-output thead tr {
 	background: #fff;
-	/*border: 1px solid red;/**/
 }
+/*
 .detailed-table-output thead tr.fixed-position {
 	width: calc(47.5% - 28.5px);
-}
-.detailed-table-output th {
-	/*border: 1px solid #222;/**/
-	/*font-weight: normal;/**/
-}
+}/**/
+
 .detailed-table-output td, .detailed-table-output th {
-	/*border: 1px solid #222;/**/
 	border-collapse: collapse;
 	padding: 2px 10px;
-	
-	/*width: 3.45%;/**/
-}
-.detailed-table-output td:first-child {
-	/*width: 3.4%;/*
-	font-weight: bold;
-	text-align: center;/**/
-}
-.detailed-table-output th:first-child {
-	/*width: 3.4%;/**/
 }
 
 .detailed-table-output td:nth-child(7n+1) {
@@ -312,28 +276,10 @@ input {
 .detailed-table-output tbody tr:hover {
 	background-color: rgba(252,242,154,.5);
 }
-/*
-.detailed-columns table, .detailed-columns tr {
-	border-collapse: collapse;
+
+footer {
+	margin: 20px 1.66%;
 }
-.detailed-columns thead tr {
-	background: #fff;
-	border: 1px solid red;
-}
-.detailed-columns thead tr.fixed-position {
-	width: calc(47.5% - 28.5px);
-}
-.detailed-columns td, .detailed-columns th {
-	border: 1px solid #222;
-	border-collapse: collapse;
-	padding: 2px 10px;
-}
-.detailed-columns tbody tr:nth-child(2n+1) {
-	background-color: rgba(106,90,212,.2);
-}
-.detailed-columns tbody tr:hover {
-	background-color: rgba(252,242,154,.5);
-}/**/
 
 
 /* ==========================================================================

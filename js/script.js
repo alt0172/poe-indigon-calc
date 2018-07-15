@@ -553,6 +553,12 @@ function emulate(mode){
 	} while ( timespent < emulatingTime );
 }
 
+function onLoadFunc(){
+	importFormData();
+	if ( location.hash.substring(1) !== '' ){
+		main();
+	}
+}
 
 function main(){
 	//importFormData();
