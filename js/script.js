@@ -126,7 +126,7 @@ function setVars(){
 	noleechTime   = getFromForm('noleech_time', 0, emulatingTime);
 	
 	indigonCost   = getFromForm('indigon_cost', 50, 60);
-	indigonDmg    = getFromForm('indigon_dmg', 50, 60);
+	indigonDmg    = getFromForm('indigon_dmg', 20, 60);
 
 
 	manacost      = getFromForm('mana_cost');
